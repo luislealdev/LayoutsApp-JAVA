@@ -1,11 +1,15 @@
 package luisrrleal.com.layoutsapp;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,8 +20,8 @@ public class LayoutsApp extends Application {
 
         BorderPane root = new BorderPane();
         root.setTop(generateTopSection());
+        root.setLeft(generateLeftSection());
         /*
-        root.setLeft();
         root.setCenter();
         root.setRight();
         root.setBottom();
@@ -30,14 +34,29 @@ public class LayoutsApp extends Application {
         stage.show();
     }
 
+    //GENERATE SECTIONS
     private HBox generateTopSection(){
         HBox hbox = new HBox(5);
+        hbox.setAlignment(Pos.CENTER);
 
         for(int i=1; i<=10;i++){
             hbox.getChildren().add(new Button("Button "+i));
         }
         return hbox;
     }
+
+    private VBox generateLeftSection(){
+        VBox vbox = new VBox(5);
+        vbox.setAlignment(Pos.CENTER);
+        String names[] = {"Juan","Pepe","Ernesto","Norma","Eden","Teresa","Luis","Guillermo","Martha"};
+        for(int i=1; i<=10;i++){
+            vbox.getChildren().add(new ComboBox<>(FXCollections.observableArrayList(names)));
+        }
+
+        return vbox;
+    }
+
+
 
     public static void main(String[] args) {
         launch();
