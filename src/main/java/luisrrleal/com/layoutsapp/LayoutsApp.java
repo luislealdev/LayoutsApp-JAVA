@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,8 +23,9 @@ public class LayoutsApp extends Application {
         BorderPane root = new BorderPane();
         root.setTop(generateTopSection());
         root.setLeft(generateLeftSection());
+        root.setRight(generateRightSection());
+
         /*
-        root.setCenter();
         root.setRight();
         root.setBottom();
          */
@@ -51,6 +54,21 @@ public class LayoutsApp extends Application {
         String names[] = {"Juan","Pepe","Ernesto","Norma","Eden","Teresa","Luis","Guillermo","Martha"};
         for(int i=1; i<=10;i++){
             vbox.getChildren().add(new ComboBox<>(FXCollections.observableArrayList(names)));
+        }
+        return vbox;
+    }
+
+    private VBox generateRightSection(){
+        VBox vbox = new VBox(5);
+        vbox.setAlignment(Pos.CENTER);
+
+        //Create group for radio buttons
+        ToggleGroup group = new ToggleGroup();
+
+        for(int i=1; i<=10;i++){
+            RadioButton rb = new RadioButton("Option "+i );
+            rb.setToggleGroup(group);
+            vbox.getChildren().add(rb);
         }
 
         return vbox;
